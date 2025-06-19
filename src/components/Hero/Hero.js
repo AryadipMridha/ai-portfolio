@@ -1,7 +1,7 @@
 // src/components/Hero/Hero.js
 import React from 'react';
 import { motion } from 'framer-motion';
-import ScrollAnimationWrapper from '../ScrollAnimationWrapper/ScrollAnimationWrapper';
+// import ScrollAnimationWrapper from '../ScrollAnimationWrapper/ScrollAnimationWrapper';
 import styles from './Hero.module.css';
 
 const Hero = () => {
