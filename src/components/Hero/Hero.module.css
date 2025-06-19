@@ -1,0 +1,89 @@
+/* src/components/Hero/Hero.module.css */
+.heroSection {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background: 
+        linear-gradient(45deg, rgba(255, 87, 51, 0.07), rgba(137, 207, 240, 0.07)), 
+        var(--current-bg);
+    padding-top: 80px; /* Account for fixed header */
+    transition: background 0.3s ease;
+}
+/* Dark mode specific gradient if needed */
+body.dark-mode .heroSection {
+     background: 
+        linear-gradient(45deg, rgba(255, 87, 51, 0.04), rgba(137, 207, 240, 0.04)), 
+        var(--current-bg);
+}
+
+.heroContent {
+    max-width: 800px;
+}
+
+.heroGreeting {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 5px;
+    color: var(--current-text); /* Will inherit, but can be explicit */
+}
+
+/* .heroName is for any specific layout overrides, main style is .hero-name-gradient in index.css */
+.heroName {
+    margin-bottom: 20px; /* More space after name */
+}
+
+.heroTitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 15px;
+    color: var(--current-text);
+    opacity: 0.9;
+}
+
+.heroSpecializations {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 35px; /* More space before buttons */
+    color: var(--baby-blue); /* Direct color */
+}
+body.dark-mode .heroSpecializations {
+    color: var(--baby-blue); /* Ensure it stays baby blue in dark mode */
+}
+
+.heroButtons {
+    margin-top: 20px;
+    display: flex; /* For better alignment if needed */
+    justify-content: center;
+    gap: 15px;
+}
+
+@media (max-width: 992px) {
+    /* hero-name-gradient is handled globally */
+    .heroTitle { font-size: 1.3rem; }
+    .heroSpecializations { font-size: 1rem; }
+}
+
+@media (max-width: 768px) {
+    .heroTitle { font-size: 1.1rem; }
+}
+
+@media (max-width: 480px) {
+    .heroGreeting { font-size: 1.5rem; }
+    .heroName { font-size: 2.2rem !important; } /* Override global if needed for very small screens */
+    .heroTitle { font-size: 1rem; }
+    .heroSpecializations { font-size: 0.9rem; }
+    .heroButtons {
+        flex-direction: column; /* Stack buttons on very small screens */
+        align-items: center;
+    }
+    .heroButtons a {
+        width: 80%; /* Make buttons wider */
+        margin-left: 0 !important; /* Reset margin for stacked buttons */
+    }
+    .heroButtons a:last-child {
+        margin-top: 10px; /* Add space between stacked buttons */
+    }
+}

@@ -1,0 +1,304 @@
+/* src/index.css */
+:root {
+    --lavender: #6A0DAD; /* Orange/Red */
+    --baby-blue: #89CFF0;
+    
+    --bg-light: #f4f7f6;
+    --text-light: #333;
+    --card-bg-light: #ffffff;
+    --border-light: #e0e0e0;
+    --header-bg-light-transparent: rgba(255,255,255,0.1);
+    --header-bg-light-scrolled: #ffffff;
+
+    --bg-dark: #1a1a2e;
+    --text-dark: #e0e0e0;
+    --card-bg-dark: #162447;
+    --border-dark: #2a3b5f;
+    --header-bg-dark-transparent: rgba(26, 26, 46, 0.1);
+    --header-bg-dark-scrolled: #162447;
+
+    /* Initial theme: light (will be overridden by JS) */
+    --current-bg: var(--bg-light);
+    --current-text: var(--text-light);
+    --current-card-bg: var(--card-bg-light);
+    --current-border: var(--border-light);
+    --current-header-bg-transparent: var(--header-bg-light-transparent);
+    --current-header-bg-scrolled: var(--header-bg-light-scrolled);
+
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Roboto Slab', serif;
+}
+
+body.dark-mode {
+    --current-bg: var(--bg-dark);
+    --current-text: var(--text-dark);
+    --current-card-bg: var(--card-bg-dark);
+    --current-border: var(--border-dark);
+    --current-header-bg-transparent: var(--header-bg-dark-transparent);
+    --current-header-bg-scrolled: var(--header-bg-dark-scrolled);
+}
+
+/* Basic Reset & Fonts */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; 
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--current-bg);
+    color: var(--current-text);
+    line-height: 1.7;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Slab:wght@700&display=swap');
+
+/* Utility Classes (can be used directly in components) */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+section { /* Base styling for sections */
+    padding: 80px 0;
+    overflow: hidden; 
+}
+
+h1, h2, h3 {
+    font-family: var(--font-secondary);
+    color: var(--current-text);
+    margin-bottom: 20px;
+}
+h2 { font-size: 2.5rem; text-align: center; }
+h3 { font-size: 1.8rem; color: var(--lavender); }
+
+p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+a {
+    color: var(--baby-blue);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: var(--lavender);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--lavender);
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+    border: 2px solid var(--lavender);
+}
+.btn:hover {
+    background-color: var(--baby-blue);
+    border-color: var(--baby-blue);
+    color: var(--bg-light);
+    transform: translateY(-3px);
+}
+body.dark-mode .btn:hover {
+    color: var(--bg-dark);
+}
+.btn-secondary {
+    background-color: transparent;
+    color: var(--lavender);
+    border: 2px solid var(--lavender);
+}
+.btn-secondary:hover {
+    background-color: var(--lavender);
+    color: white;
+}
+
+/* Hero Name Gradient */
+.hero-name-gradient {
+    font-size: 4.5rem; 
+    font-weight: 700;
+    font-family: var(--font-secondary);
+    margin-bottom: 15px;
+    line-height: 1.1;
+    background-image: linear-gradient(90deg, 
+        var(--lavender) 0%, 
+        var(--baby-blue) 50%, 
+        var(--lavender) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-flow 8s ease infinite;
+}
+@keyframes gradient-flow {
+    0% { background-position: 0% center; }
+    50% { background-position: 200% center; }
+    100% { background-position: 0% center; }
+}
+
+/* Global Timeline Styles */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--baby-blue);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    opacity: 0.5;
+}
+
+/* Global Project Card Base Style (can be extended by ProjectCard.module.css) */
+.project-card-base {
+    background-color: var(--current-card-bg);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    padding: 25px;
+    border: 1px solid var(--current-border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* For consistent card height in a grid */
+}
+.project-card-base:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+body.dark-mode .project-card-base:hover {
+    box-shadow: 0 10px 25px rgba(255,87,51,0.15); /* Lavender glow */
+}
+.project-card-base h3 { /* H3 within project card */
+    font-size: 1.5rem; /* Override global H3 if needed */
+    margin-bottom: 10px;
+    color: var(--lavender); /* Ensure project title uses lavender */
+}
+.project-tech {
+    font-size: 0.85rem;
+    color: var(--baby-blue);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.project-links {
+    margin-top: auto; /* Pushes links to the bottom */
+    padding-top: 15px;
+}
+.project-links a {
+    margin-right: 10px;
+    font-weight: 600;
+    color: var(--lavender); /* Links in project card */
+}
+.project-links a:hover {
+    text-decoration: underline;
+    color: var(--baby-blue);
+}
+
+/* Contact Section & Form Global Styles */
+#contact-section { /* ID for section specific background */
+    background-color: var(--current-card-bg);
+    transition: background-color 0.3s ease;
+}
+.contact-form-wrapper {
+    max-width: 700px;
+    margin: 30px auto 0;
+    padding: 30px;
+    background-color: var(--current-bg); 
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    border: 1px solid var(--current-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+body.dark-mode .contact-form-wrapper {
+     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--current-text);
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid var(--current-border);
+    background-color: var(--current-bg);
+    color: var(--current-text);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--lavender);
+    box-shadow: 0 0 0 2px rgba(255, 87, 51, 0.3); /* Lavender focus ring */
+}
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Footer Global Styles */
+.footer-social-links a {
+    margin: 0 10px;
+    font-size: 1.5rem; /* Icon size */
+    color: var(--current-text);
+    opacity: 0.7;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+.footer-social-links a:hover {
+    color: var(--lavender);
+    opacity: 1;
+}
+.footer-text {
+    color: var(--current-text);
+    opacity: 0.8;
+    font-size: 0.9rem;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .hero-name-gradient { font-size: 3.5rem; }
+    h2 { font-size: 2rem; }
+}
+
+@media (max-width: 768px) {
+    .hero-name-gradient { font-size: 2.8rem; }
+    .timeline::after {
+        left: 20px; /* Move timeline line to the left for stacked items */
+    }
+    /* Timeline item adjustments will be in TimelineItem.module.css */
+}
+
+@media (max-width: 480px) {
+    .container { width: 95%; }
+    .hero-name-gradient { font-size: 2.2rem; }
+    .btn { padding: 10px 20px; font-size: 0.9rem; }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.3rem; }
+}

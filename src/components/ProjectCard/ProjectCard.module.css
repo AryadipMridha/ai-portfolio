@@ -1,0 +1,42 @@
+/* src/components/ProjectCard/ProjectCard.module.css */
+
+/* .project-card-base in index.css handles background, border, base padding, shadow, hover transform */
+.projectCard {
+    /* Add any specific overrides or additional styles for the card itself if needed */
+    /* For example, if you wanted a unique border only for project cards: */
+    /* border-left: 4px solid var(--lavender); */
+}
+
+/* .project-card-base h3 in index.css sets title color to lavender */
+
+/* .project-tech in index.css styles the tech stack string */
+.projectTech {
+    /* Add any overrides if necessary, e.g., font style */
+    /* font-style: italic; */
+    margin-bottom: 10px; /* Ensure consistent spacing */
+}
+
+.projectDescription {
+    font-size: 0.95rem;
+    color: var(--current-text);
+    opacity: 0.85;
+    flex-grow: 1; /* Allows description to take up available space pushing links down */
+    margin-bottom: 15px; /* Space before links */
+    line-height: 1.6;
+}
+
+/* .project-links in index.css styles the links container and individual 'a' tags */
+.projectLinks a {
+    display: inline-flex; /* Align icon and text nicely */
+    align-items: center;
+    gap: 5px; /* Space between icon and text */
+    font-size: 0.9em;
+}
+
+.projectLinks a svg {
+    transition: transform 0.2s ease-out;
+}
+
+.projectLinks a:hover svg {
+    transform: scale(1.1);
+}

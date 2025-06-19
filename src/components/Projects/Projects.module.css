@@ -1,0 +1,29 @@
+/* src/components/Projects/Projects.module.css */
+.projectsGrid {
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+    grid-template-columns: repeat(3, 1fr); /* Default to 3 columns */
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.projectGridItem {
+    /* This class is on the ScrollAnimationWrapper. 
+       If ProjectCard needs to fill this, ensure its height is 100% or flex settings are correct.
+       The .project-card-base in index.css already has display:flex and flex-direction:column
+       and height: 100% which should work well for grid items.
+    */
+}
+
+
+@media (max-width: 992px) {
+    .projectsGrid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    }
+}
+
+@media (max-width: 600px) { /* Adjusted breakpoint for 1 column */
+    .projectsGrid {
+        grid-template-columns: 1fr; /* 1 column on small screens */
+    }
+}

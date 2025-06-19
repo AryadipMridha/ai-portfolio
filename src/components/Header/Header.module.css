@@ -1,0 +1,138 @@
+/* src/components/Header/Header.module.css */
+.mainHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 0;
+    background-color: var(--current-header-bg-transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.mainHeader.scrolled {
+    background-color: var(--current-header-bg-scrolled);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+body.dark-mode .mainHeader.scrolled {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navLogo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-family: var(--font-secondary);
+    background: linear-gradient(45deg, var(--lavender), var(--baby-blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    /* For Framer Motion hover, ensure it doesn't interfere with global 'a' */
+    text-decoration: none !important;
+}
+
+.navLinksDesktop {
+    list-style: none;
+    display: flex;
+    align-items: center; /* Vertically align items */
+}
+.navLinksDesktop li {
+    margin-left: 25px;
+}
+.navLinksDesktop a {
+    font-weight: 600;
+    color: var(--current-text);
+    font-size: 0.95rem;
+    position: relative;
+    padding-bottom: 5px; /* Space for the underline */
+    transition: color 0.3s ease;
+}
+.navLinksDesktop a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0; /* Position underline at the bottom of padding */
+    left: 0;
+    background-color: var(--lavender);
+    transition: width 0.3s ease;
+}
+.navLinksDesktop a:hover::after {
+    width: 100%;
+}
+.navLinksDesktop a:hover {
+    color: var(--lavender); /* This still applies, Framer can enhance */
+}
+
+.headerControls {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Spacing between toggle and menu button */
+}
+
+.mobileMenuButton {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    color: var(--current-text);
+    cursor: pointer;
+    padding: 5px; /* Click area */
+    z-index: 1001; /* Above mobile menu if it overlaps */
+}
+
+.mobileMenu {
+    position: absolute;
+    top: 100%; /* Full header height */
+    left: 0;
+    width: 100%;
+    background-color: var(--current-header-bg-scrolled); /* Solid background */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 15px 0;
+    border-top: 1px solid var(--current-border); /* Separator */
+}
+body.dark-mode .mobileMenu {
+    border-top: 1px solid var(--border-dark);
+}
+
+.navLinksMobile {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.navLinksMobile li {
+    width: 100%;
+}
+.navLinksMobile a {
+    display: block;
+    padding: 12px 20px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--current-text);
+    font-size: 1.05rem;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+.navLinksMobile a:hover {
+    color: var(--lavender);
+    background-color: rgba(137, 207, 240, 0.08); /* Baby blue subtle hover */
+}
+body.dark-mode .navLinksMobile a:hover {
+    background-color: rgba(137, 207, 240, 0.1);
+}
+
+@media (max-width: 768px) {
+    .navLinksDesktop {
+        display: none;
+    }
+    .mobileMenuButton {
+        display: flex; /* Use flex to align icon if needed */
+        align-items: center;
+        justify-content: center;
+    }
+}

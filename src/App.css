@@ -1,0 +1,6 @@
+/* src/App.css */
+/* You might not need much here if index.css handles most global layout */
+main {
+  /* Example: to ensure content starts below a fixed header */
+  /* padding-top: 70px; /* Adjust if your header height changes */
+}

@@ -1,0 +1,97 @@
+/* src/components/TimelineItem/TimelineItem.module.css */
+.timelineItem {
+    padding: 10px 0; /* Base padding, side specific padding added below */
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+.timelineItem.left {
+    left: 0;
+    padding-right: 25px; /* Make space for the dot */
+}
+
+.timelineItem.right {
+    left: 50%;
+    padding-left: 25px; /* Make space for the dot */
+}
+
+/* The circles on the timeline */
+.timelineItem::after {
+    content: '';
+    position: absolute;
+    width: 20px; /* Dot size */
+    height: 20px;
+    background-color: var(--current-card-bg); /* Dot background */
+    border: 4px solid var(--lavender); /* Dot border color */
+    top: 20px; /* Align with content start */
+    border-radius: 50%;
+    z-index: 1;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.timelineItem.left::after {
+    right: -10px; /* Position dot on the timeline axis */
+}
+
+.timelineItem.right::after {
+    left: -10px; /* Position dot on the timeline axis */
+}
+
+.timelineContent {
+    padding: 20px 25px;
+    background-color: var(--current-card-bg);
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    border: 1px solid var(--current-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+body.dark-mode .timelineContent {
+    box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+}
+
+/* timelineContent h3 is styled globally with lavender color */
+
+.timelineDate {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--baby-blue); /* Specific color for date */
+    margin-bottom: 8px;
+}
+
+.timelineInstitution {
+    font-weight: 600; /* Slightly bolder */
+    margin-bottom: 10px;
+    color: var(--current-text); /* Use current text color */
+}
+
+.detailsList {
+    list-style-position: inside;
+    padding-left: 5px;
+    margin-top: 10px;
+}
+
+.detailsList li {
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+    color: var(--current-text);
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    /* Global .timeline::after is handled in index.css */
+    .timelineItem {
+        width: 100%;
+        padding-left: 35px; /* Space from the main timeline bar + dot */
+        padding-right: 10px; /* Reset other side padding */
+    }
+    .timelineItem.left, .timelineItem.right {
+        left: 0%; /* Align all items to the main timeline bar */
+        /* padding-left and padding-right are now same for both */
+    }
+    .timelineItem.left::after, .timelineItem.right::after {
+        left: -10px; /* Position dot correctly on the moved timeline axis */
+        right: auto; /* Remove fixed right positioning */
+    }
+}

@@ -1,0 +1,18 @@
+/* src/components/ThemeToggle/ThemeToggle.module.css */
+.themeToggleButton {
+    background: none;
+    border: none;
+    color: var(--current-text);
+    cursor: pointer;
+    padding: 8px; /* Increased padding for better click area */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Make it circular */
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.themeToggleButton:hover {
+    color: var(--lavender);
+    background-color: rgba(137, 207, 240, 0.1); /* Baby blue subtle hover */
+}
